@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1c9946a05fe0569f2f2414072f0d5cc6",
+    "packages": [
+        {
+            "name": "niirrty/niirrty.core",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Niirrty/Niirrty.Core.git",
+                "reference": "6faede6ea051b42e8eb776cfa05808d5978cd730"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Niirrty/Niirrty.Core/zipball/6faede6ea051b42e8eb776cfa05808d5978cd730",
+                "reference": "6faede6ea051b42e8eb776cfa05808d5978cd730",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.*",
+                "phpunit/phpunit": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Niirrty\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ni Irrty",
+                    "email": "niirrty+code@gmail.com"
+                }
+            ],
+            "description": "The core of all Niirrty PHP stuff :-)",
+            "time": "2018-03-31T14:09:27+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.1"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}

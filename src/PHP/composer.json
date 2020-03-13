@@ -1,0 +1,21 @@
+{
+    "name": "niirrty/niirrty.spreadsheetmapping.api",
+    "type": "library",
+    "description": "PHP implementation of a API for mapping Excel spreadsheet contents to other data formats.",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Ni Irrty",
+        "email": "niirrty+code@gmail.com"
+      }
+    ],
+    "require": {
+      "php": ">=7.1",
+      "niirrty/niirrty.core": "~0.2"
+    },
+    "autoload": {
+      "psr-4": {
+        "Niirrty\\SpreadsheetMapping\\API\\": "src/"
+      }
+    }
+  }
