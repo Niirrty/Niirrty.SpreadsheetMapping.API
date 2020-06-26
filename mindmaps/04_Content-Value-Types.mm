@@ -1,9 +1,9 @@
 <map version="freeplane 1.7.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="Content value types&#xa;for &quot;contains&quot;, &quot;starts with&quot;&#xa;and &quot;ends with&quot;" FOLDED="false" ID="ID_1125069511" CREATED="1580978184132" MODIFIED="1580978609097" COLOR="#ffffff" BACKGROUND_COLOR="#cc0033" STYLE="oval">
+<node TEXT="Content value types&#xa;for &quot;contains (not)&quot;,&#xa;&quot;starts (not) with&quot;,&#xa;&quot;ends (not) with&quot;&#xa;and &quot;Is (not)&quot;" FOLDED="false" ID="ID_1125069511" CREATED="1580978184132" MODIFIED="1587573746678" COLOR="#ffffff" BACKGROUND_COLOR="#cc0033" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" fit_to_viewport="false"/>
+    <properties fit_to_viewport="false" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -63,13 +63,16 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="9" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="11" RULE="ON_BRANCH_CREATION"/>
 <edge COLOR="#000000"/>
 <node TEXT="string" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_781071461" CREATED="1580721057726" MODIFIED="1580978357346" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
 <node TEXT="char from character group" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1322342231" CREATED="1580721087500" MODIFIED="1580978365826" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
+</node>
+<node TEXT="chars from character group" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1490818152" CREATED="1587573297354" MODIFIED="1587573375469" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="bubble">
+<edge COLOR="#007c7c"/>
 </node>
 <node TEXT="line break" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1061210510" CREATED="1580721129486" MODIFIED="1580978371043" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
@@ -80,19 +83,22 @@
 <node TEXT="word char" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1031640001" CREATED="1580721174317" MODIFIED="1580978385693" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
-<node TEXT="numeric char" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_970557257" CREATED="1580721182813" MODIFIED="1580978334598" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
+<node TEXT="word chars" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1861692959" CREATED="1580721174317" MODIFIED="1587573855954" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
 <node TEXT="alphanumeric char" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_817158776" CREATED="1580721192188" MODIFIED="1580978334598" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
+<node TEXT="alphanumeric chars" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_107573352" CREATED="1580721192188" MODIFIED="1587573883040" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
+<edge COLOR="#000000"/>
+</node>
 <node TEXT="whitespace" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1995094066" CREATED="1580721231308" MODIFIED="1580978473404" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
-<node TEXT="regular expression" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1524524167" CREATED="1580721257660" MODIFIED="1580978482275" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
+<node TEXT="whitespaces" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1015292566" CREATED="1580721231308" MODIFIED="1587573603991" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
-<node TEXT="simplified expression" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="left" ID="ID_1530866150" CREATED="1580721257660" MODIFIED="1580978609097" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle" HGAP_QUANTITY="-444.9999863207344 pt" VSHIFT_QUANTITY="140.2499958202244 pt">
+<node TEXT="regular expression" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1524524167" CREATED="1580721257660" MODIFIED="1580978482275" COLOR="#000000" BACKGROUND_COLOR="#ffcc00" STYLE="rectangle">
 <edge COLOR="#000000"/>
 </node>
 </node>

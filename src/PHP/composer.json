@@ -11,7 +11,10 @@
     ],
     "require": {
       "php": ">=7.1",
-      "niirrty/niirrty.core": "~0.2"
+      "niirrty/niirrty.core": "~0.2",
+      "niirrty/niirrty.dynprop": "~0.2",
+        "monolog/monolog": "^2.0",
+        "phpoffice/phpexcel": "^1.8"
     },
     "autoload": {
       "psr-4": {

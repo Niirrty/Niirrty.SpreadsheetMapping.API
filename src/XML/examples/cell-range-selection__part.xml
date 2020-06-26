@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+    Defines the Mappings of all required data from an SpreadSheet format file to data in reusable formats
+
+    It knows only one attribute. `name` speaks for it self and is limited to max 64 chars
+-->
+<!-- @@LOCALE=de
+    Definiert die Mappings für alle benötigten Daten aus Der Datei in einem SpreadSheet-Format, in Daten in weiterverwendbaren Format
+
+    Es ist nur ein Attribut bekannt. Der `name` ist selbstredend. Maximale Zeichenmange ist 64.
+-->
+<SpreadSheetMapping name="Rechnungseingang - Einkauf - Typ 001">
+
+    <!-- The SpreadSheetMapping description text. Who would have thought that? :-D -->
+    <Description>Rechnungen von Lieferanten. Typ 001: Rechnungen von der Aulick-Kuntzer AG und deren Subunternehmen</Description>
+
+    <!--
+        All search conditions, used inside the document must be defined here.
+        If a search condition contains other search conditions, they also must be defined here and
+        referenced inside the search condition (see condition with name "IsEndPlaceholder")
+    -->
+    <!-- @@LOCALE=de
+        Alle SearchConditions innerhalb des Dokuments müssen hier im SearchConditions Element defi-
+        niert sein. Wenn eine SearchCondition andere SearchConditions enthält so müssen diese eben-
+        falls hier definiert sein innerhalb der SearchCondition werden diese dann nur als
+        RefSearchCondition Referenz angegeben.
+        (siehe z.B. die SearchCondition mit dem Name "IsEndPlaceholder")
+    -->
+    <SearchConditions>
+
+        <!--
+            A Search condition is always initially defined by some parameters with some relations.
+
+            - `name`
+              Each search condition must use a Config wide unique name.
+            - `type`
+              is the validation type of the condition. It can use the following values:
+                - "Contains": Checks if the cell content contains a specific string or format
+                - "StartsWith": Checks if the cell content starts with a specific string or format
+                - "EndsWith": Checks if the cell content ends with a specific string or format
+                - "Is": Checks if the cell content is a specific string or format
+            - `reverse`
+              Should the meaning of the validation type reversed? If so, the validation types now mean:
+                - "Contains": Checks if the cell content contains NOT a specific string or format
+                - "StartsWith": Checks if the cell content starts NOT with a specific string or format
+                - "EndsWith": Checks if the cell content ends NOT with a specific string or format
+                - "Is": Checks if the cell content is NOT a specific string or format
+            - `trim`
+              Defines if the cell content should be trimmed (remove all enclosing whitespaces) before
+              it is validated.
+        -->
+        <!-- @@LOCALE=de
+            Eine SearchCondition wird initial immer durch die folgenden Attribute definiert:
+
+            - `name`
+              Jede SearchCondition muss einen Namen nutzen der innerhalb des SpreadSheetMapping Root
+              Elements eindeutig ist.
+            - `type`
+              Das is der Typ der Prüfung für die SearchCondition. Er kann die folgenden Werte haben:
+                - "Contains": Prüft ob der Zellinhalt eine spezifischen Zeichenkette oder ein spezifisches Format enthällt
+                - "StartsWith": Prüft ob der Zellinhalt mit einer spezifischen Zeichenkette oder einem spezifisches Format beginnt
+                - "EndsWith": Prüft ob der Zellinhalt mit einer spezifischen Zeichenkette oder einem spezifisches Format endet
+                - "Is": Prüft ob der Zellinhalt genau eine spezifische Zeichenkette oder ein spezifisches Format ist
+            - `reverse`
+              Gibt an, ob der Ausdruck der durch Type definiert ist umgekeert werden soll. Das bedeuten dessen Werte:
+                - "Contains": Prüft ob der Zellinhalt NICHT eine spezifischen Zeichenkette oder ein spezifisches Format enthällt
+                - "StartsWith": Prüft ob der Zellinhalt NICHT mit einer spezifischen Zeichenkette oder einem spezifisches Format beginnt
+                - "EndsWith": Prüft ob der Zellinhalt NICHT mit einer spezifischen Zeichenkette oder einem spezifisches Format endet
+                - "Is": Prüft ob der Zellinhalt NICHT genau eine spezifische Zeichenkette oder ein spezifisches Format ist
+            - `trim`
+              Legt fest ob der Inhalt der Zelle vor der Prüfung von umgebenden Whitespace-Zeichen befreit werden soll.
+        -->
+        <SearchCondition name="IsEmpty" type="Is" reverse="false" trim="true">
+
+            <!--
+                The value used for the validation of the condition.
+
+                Valid types are:
+                    - "Str" (value: required):
+                      Any string
+                    - "CharFromCharGroup" (value: required):
+                      A single character from a character group. A group can be a range like "2-4" or "a-f", single chars or a mix of it like "a-f0-9="
+                    - "CharsFromCharGroup" (value: required):
+                      One or more characters from a character group. A group can be a range like "2-4" or "a-f", single chars or a mix of it like "a-f0-9="
+                    - "Linebreak": (if a value is defined, it must be a number and mean the amount of linebreaks, regular 1 linebreak is matched. -1 means unlimited)
+                      One or more linebreaks: "\n" "\r\n" and "\r" is always a single line break. It depends only to operating system (OS)
+                    - "Tabulator": (if a value is defined, it must be a number and mean the amount of tabulators, regular 1 tabulator is matched. -1 means unlimited)
+                      One or more tabulators
+                    - "WordChar": (if a value is defined, it must be a number and mean the amount of chars, regular 1 char is matched. -1 means unlimited)
+                      One or more unicode word characters.
+                    - "AlphaNumericChar": (if a value is defined, it must be a number and mean the amount of chars, regular 1 char is matched. -1 means unlimited)
+                      One or more alphanumeric characters.
+                    - "Whitespace": (if a value is defined, it must be a number and mean the amount of whitespaces, regular 1 whitespace is matched. -1 means unlimited)
+                      One or more whitespace characters. It covers "\0", "\n", "\r", "\t" and spaces " "
+                    - "Regex" (value: required):
+                      Any String that matches a regular expression. The regex must never contain delimiters, "^", "$" and global modifiers!
+
+                The types, marked by (value: required) also need the definition of a string that is used for validation.
+
+                `caseless` Defines if the content validation should be case less (default=false)
+
+                The text content of the Value Element defines the value it self, associated to the value Type
+            -->
+            <!-- Here the text content is a empty string -->
+            <!-- @@LOCALE=de
+                Der Wert der für die Prüfung der Bedingung (SearchCondition) evtl. benötigt wird.
+
+                Gültige Werte sind:
+                    - "Str" (Wert: benötigt):
+                      Eine beliebige Zeichenkette
+                    - "CharFromCharGroup" (Wert: benötigt):
+                      Ein einzelnes Zeichen aus einer zu definierenden Zeichengruppe. Die Gruppe kann ein Bereich wie "2-4" oder "a-f" sein,
+                      einzelne Zeichen, oder ein mix aus Beiden "a-f0-9="
+                    - "CharsFromCharGroup" (Wert: benötigt):
+                      Ein oder mehr Zeichen aus einer zu definierenden Zeichengruppe. Die Gruppe kann ein Bereich wie "2-4" oder "a-f" sein,
+                      einzelne Zeichen, oder ein mix aus Beiden "a-f0-9="
+                    - "Linebreak": (if a value is defined, it must be a number and mean the amount of linebreaks, regular 1 linebreak is matched)
+                      Ein oder mehr Zeilenumbrüche: "\n" "\r\n" und "\r" ist immer ein einzelner Zeilenumbruch, abhängig vom Betriessystem (OS)
+                    - "Tabulator": (if a value is defined, it must be a number and mean the amount of tabulators, regular 1 tabulator is matched)
+                      Ein oder mehr Tabulatoren
+                    - "WordChar": (if a value is defined, it must be a number and mean the amount of chars, regular 1 char is matched)
+                      Ein oder mehrere Unicode Wortzeichen
+                    - "AlphaNumericChar": (if a value is defined, it must be a number and mean the amount of chars, regular 1 char is matched)
+                      Ein oder mehr alphanumerische Zeichen
+                    - "Whitespace": (if a value is defined, it must be a number and mean the amount of whitespaces, regular 1 whitespace is matched)
+                      Ein oder mehr Whitespace-Zeichen: "\0", "\n", "\r", "\t" und Leerzeichen " "
+                    - "Regex" (Wert: benötigt):
+                      Eine Zeichenkette auf die ein regulärer Ausdruck zutrifft. Der Regex darf nie Delimiter, "^", "$" und globale Modifikatoren beinhalten
+                
+                Die Typen die mit (Wert: benötigt) gekennzeichnet sind benötigen immer eine definierte Zeichenkette mit der die Bedingung geprüft werden kann.
+
+                `caseless` Gibt an ob die Inhaltprüfung der Bedingung Groß-Klein Schreibung ignorieren soll. (default=false)
+
+                Der Text-Inhalt vom Value ELement definiert den Wert selbst, abhängig vom Value type.
+            -->
+            <Value type="Str" caseless="true"></Value>
+
+            <!--
+                If the value type no requires a value string you can also use for:
+                    <Value type="WordChar" caseless="true">1</Value>
+                the short hand element syntax:
+                    <Value type="WordChar" caseless="true" />
+            -->
+
+            <!--
+                If the main search condition must match in combination with one or more other search condition(s),
+                (AND combination) you must define the other conditions inside a SearchConditions Element
+            -->
+            <SearchConditions>
+
+                <!--
+                    Define the Sub search conditions here as RefSearchCondition Elements with attribute `name`...
+                        <RefSearchCondition name="NameOfOtherSearchCondition" />
+                    Never define a <SearchCondition... element here!
+                -->
+
+            </SearchConditions>
+
+        </SearchCondition>
+
+        <SearchCondition name="IsParsableSpreadSheet" type="StartsWith" reverse="true" trim="true">
+            <Value type="Regex" caseless="true"></Value>
+        </SearchCondition>
+
+        <SearchCondition name="ContainsNoWordChar" type="Contains" reverse="true" trim="true">
+            <Value type="WordChar" caseless="true" />
+        </SearchCondition>
+
+        <SearchCondition name="IsFirstHeaderCell" type="Is" trim="true">
+            <Value type="Str" caseless="true">Ort</Value>
+        </SearchCondition>
+        <SearchCondition name="IsFirstHeaderCell.en" type="Is" trim="true">
+            <Value type="Str" caseless="true">Location</Value>
+        </SearchCondition>
+
+        <SearchCondition name="IsEndPlaceholder" type="Contains">
+            <Value type="Str">----</Value>
+            <SearchConditions>
+                <RefSearchCondition name="ContainsNoWordChar" />
+            </SearchConditions>
+        </SearchCondition>
+
+        <SearchCondition name="IsYearCell" type="Is" trim="true">
+            <Value type="Regex" caseless="true">2\d{3}</Value>
+        </SearchCondition>
+
+        <SearchCondition name="IsNebenkosten" type="StartsWith" trim="true">
+            <Value type="Str" caseless="true">Nebenkosten</Value>
+        </SearchCondition>
+
+        <SearchCondition name="IsTeilsumme" type="StartsWith" trim="true">
+            <Value type="Str" caseless="true">Teilsumme</Value>
+        </SearchCondition>
+
+    </SearchConditions>
+
+    <!--
+        The decision if a Spreadsheed should be parsed can be bound to 1 or more cell SearchConditions
+    -->
+    <!-- @@LOCALE=de
+        Die Entscheidung ob ein Spreadsheet überhaupt für diese Konfiguration geparst werden soll kann über SearchConditions festgelegt werden
+    -->
+    <InitConditions>
+
+        <!--
+            - `column`: The index (0-n) of the column that contains the cell with the content that must match the condition(s)
+            - `row`: The index (0-n) of the row that contains the cell with the content that must match the condition(s)
+            - `sheet`: The Name of the sheet that must contain the table cell, or "*"" if any sheet can contain it.
+        -->
+        <InitCondition column="7" row="2" sheet="*">
+            <RefSearchCondition name="IsParsableSpreadSheet" />
+            <!-- here can be more <RefSearchCondition... elements if they match for same column and row -->
+        </InitCondition>
+
+        <!-- here can be more <InitCondition... elements -->
+    </InitConditions>
+
+    <!--
+        Maps the value of a single cell or the values of a cell range (table data) to formatted data to work with.
+
+        - `name`: The unique name of the Mapping.
+    -->
+    <!-- @@LOCALE=de
+        Mappt den Wert eines oder mehrerer Tabellenfelder.
+
+        - `name`: Der eindeutige Mapping-Name.
+    -->
+    <Mapping name="Tabelle - Artikelliste">
+
+        <!--
+            The Description of the mapping
+        -->
+        <Description>Alle Artikel der Eingangsrechnung als tabellarische Daten.</Description>
+
+        <!--
+            Here is defined how the Mapping data should be selected.
+        -->
+        <Selections>
+
+            <!--
+                Defines a new selection of type CellRange
+
+                Known Selection types are:
+                    - CellRange: Let you select a single cell or a fixed/dynamic amount of columns and rows
+                    - NamedCell: Let you select a cell with an associated name
+                    - NamedTable: Let you select a table with an associated name
+
+                There is also the attribute `name`. It should be used to define the name of the named item that
+                should be selected if the `type` is "NamedCell" or "NamedTable"
+
+                - `containsHeaders`: If value is set to "true" it means the selection contains not only data, it also contains headers.
+                - `orientation`: The `orientation` can be "Horizontal" or "Vertical" (caseless). Horizontal means
+                   Rows are horizontal and columns vertical. Vertical means Rows are vertical and columns horizontal.
+            -->
+            <!-- @@LOCALE=de
+                Definiert a neue Auswahl vom Typ "CellRange"
+
+                Nutzbare `type` Werte sind:
+                    - CellRange: Ermöglicht die Auswahl einer einzelnen Zellen oder eines Zellbereichs mit fixer oder dynamische Zeilen und Spaltenmenge
+                    - NamedCell: Ermöglicht die Auswahl einer einzelnen, nametlich benannten Zelle.
+                    - NamedTable: Ermöglicht die Auswahl einer einzelnen nametlich benannten Tabelle.
+                
+                Es gibt auch noch das `name` attribut. In diesem sollte der Name des auszuwählenden Elements 
+                stehen wenn `type` "NamedCell" oder "NamedTable" ist
+            -->
+            <Selection type="CellRange"
+                       containsHeaders="true"
+                       orientation="horizontal">
+
+                <!-- @@LOCALE=de
+                    Legt fest in welcher Reihenfolge verschiedene Bereichsfilter einer Selection verarbeitet werden sollen.
+
+                    - `columnsBeforeRows`: Legt fest ob Spaltenfilter vor Zeilenfiltern verarbeitet werden sollen.
+                -->
+                <Filtering columnsBeforeRows="true" />
+
+                <!--
+                    If Grouping of selected data should be enabled.
+
+                    If Enabled here, the Rows part must define one or more required GroupConditions
+                -->
+                <Grouping enabled="true">
+                    <!--
+                        Use this group name for records without an associated group.
+
+                        Is only required if no initial group name is defined by the rows.
+                    -->
+                    <InitialGroup name="General" />
+                </Grouping>
+
+                <!--
+                    Defines the Names of all table sheets that should be searched for matching selections.
+                    If Sheets element is empty or undefined it means search for selections matching in all sheets.
+
+                    The sheets must be handled by some program code in the same order, like defined here
+                -->
+                <!-- @@LOCALE=de
+                -->
+                <Sheets merger="TableSimple">
+                    <Sheet name="Sheet 1" amount="1" merger="" />
+                    <Sheet name="Sheet 2" />
+                    <Sheet name="Sheet 5" />
+                </Sheets>
+
+                <!--
+                    Each selection is defined by a start point.
+
+                    It can be defined by the static way (fixed column and row index) or dynamic.
+
+                    If the Startpoint also includes the definition of one or more search conditions
+                    the values for `row` + `column` now represents the Start cell for searching the
+                    selection start cell. In this case valid values are 0-n.
+
+                    If the start point contains a related reference but no search condition, `rows` + `columns`
+                    of the start point must be -1. Otherwise the relation will be ignored.
+
+                    If the start point contains a related reference and 1-n Search Conditions the search
+                    start point is defined by the selection of the related refrence and the selection start
+                    is found by a search condition matching cell.
+                -->
+                <!-- @@LOCALE=de
+                    Jede Auswahl (Selection() wird durch einen Startpunkt (StartPoint) definiert.
+                
+                    Diese kann statisch (fester Index für `column` und `row`) oder dynamisch definiert werden.
+
+                    Wenn ein StartPoint eine oder mehr Suchbedingungen (search conditions) beinhaltet, so
+                    legen die Werte für `row` + `column` jetzt die Tabellen-Zelle fest ab der die Suche
+                    gestartet werden soll. In diesem fall sind gültige Werte 0-n.
+
+                    Wenn ein StartPoint eine Referenz zu einem anderen Mapping enthält müssen `row` + `column`
+                    jeweils den Wert -1 enthalten, bzw. undefiniert sein, sonst wird die Referenz nicht beachtet.
+
+                    Wenn ein StartPoint eine Referenz zu einem anderen Mapping und Suchbedingungen definiert
+                    müssen natürlich auch `row` + `column` jeweils den Wert -1 enthalten, bzw. undefiniert sein.
+                    Dann wird der Startpunkt für die Suche durch die Referenz definiert.
+                -->
+                <StartPoint row="-1" column="-1">
+
+                    <!--
+                        If this selection seach start point is related to an other mapping selection, define it here by a Reference Element
+
+                        - `name` The name must point to an other Mapping element with the defined name.
+
+                        Attention! The Reference should be never used in combination with a StartPoint row or column value higher -1
+                    -->
+                    <!-- @@LOCALE=de
+                    -->
+                    <Reference name="Table001">
+
+                        <!--
+                            The searching for selection start point starts at a offset of defined `rows` and `columns`
+                            in relation to the reference selection cell location, defined by `horizontalRelation` and `verticalRelation`
+
+                            - `rows` must be a value between 1 and 999
+                            - `columns` can also contain negative values
+                            - valid `horizontalRelation` values are "left" and "right"
+                            - valid `verticalRelation` values are "top" and "bottom"
+
+                            Attention: In cases if no search condition is defined for a start point, the defined
+                            selection start point is a fixed point!
+                        -->
+                        <!--
+                            The example means:
+
+                            This start point is 2 rows below and 0 columns left of the most bottom left cell of the referenced final mapping selection.
+                        -->
+                        <!-- @@LOCALE=de
+                        -->
+                        <Offset rows="2" columns="0" horizontalRelation="left" verticalRelation="bottom" />
+
+                    </Reference>
+
+                    <!--
+                        Here the search conditions are defined for searching the selection start in relation to an static or dynamic start cell.
+
+                        - `maxColumns`: The max. amount of columns that should be used for searching (-1 or lower is
+                        - `maxRows`: The max. amount of rows that should be used for searching
+                    -->
+                    <!-- @@LOCALE=de
+                    -->
+                    <StartSearchConditions maxColumns="2" maxRows="1">
+
+                        <!--
+                            Use references to predefined search conditions.
+                            If RefSearchCondition is used inside the StartPoint.SearchConditions the are 2 additional attributes:
+
+                            - `offsetRows`: If a selection start cell is found by this condition, an optional row offset can
+                              be defined, in relation to the found cell
+                            - `offsetColumns`: If a selection start cell is found by this condition, an optional column offset
+                              can be defined, in relation to the found cell
+                        -->
+                        <!-- @@LOCALE=de
+                        -->
+                        <RefSearchCondition name="IsFirstHeaderCell" offsetRows="0" offsetColumns="0" />
+                        <!-- Alt. search condition if the first one not matches -->
+                        <RefSearchCondition name="IsFirstHeaderCell.en" />
+
+                    </StartSearchConditions>
+
+                </StartPoint>
+
+                <!--
+                    Here is defined how many rows should be selected, how the row selection should stopp dynamic
+                    and the rows that should be ignored by condition(s)
+
+                    - `amount`: It defines a fixed amount of rows that should be selected. Max allowed value is 99999
+                      Stopp- and Ignore-Conditions works with a fixed amount. If a Stop Condition matches before the
+                      row amount is reached row parsing must stop
+                -->
+                <!-- @@LOCALE=de
+                -->
+                <Rows amount="99">
+                
+                    <!--
+                        You can define 0 or more stopp conditions, to say if reading rows inside the predefined row 
+                        amount should stop. 2 or more conditions are combined by the OR operator. If you need a
+                        combination with the AND operator Define it inside the SearchCondition => SearchConditions
+                        element by the same way
+                    -->
+                    <!-- @@LOCALE=de
+                    -->
+                    <StoppConditions>
+
+                        <!--
+                            A StoppCondition always enclose one or more search conditions (references) and the Elements element.
+                            Stoppconditions usable with same ELements type can be always defined at the same place.
+                        -->
+                        <StoppCondition>
+                            <SearchConditions>
+                                <RefSearchCondition name="IsEmpty" />
+                            </SearchConditions>
+                            <!--
+                                The cells/columns of the row that must match the Search conditions to mark the row as stopp row.
+
+                                Valid values for `type` are
+
+                                - "all": All cells/columns must match
+                                - "first": The content of the first cell/column of the row must match
+                                - "last": The content of the last cell/column of the row must match
+                                - "any":  The content of any cell/column of the row must match
+                                - "specific": 
+                            -->
+                            <!-- @@LOCALE=de
+                                Oder auf den Inhalt der Zelle für die Spalte mit dem angegebenen Typ.
+
+                                Gültige Werte für `type` sind:
+
+                                - "all": Die Bedingung muss in allen Zellen/Spalten zutreffen
+                                - "first": Die Bedingung muss in der ersten Zelle/Spalte zutreffen
+                                - "last": Die Bedingung muss in der letzten Zelle/Spalte zutreffen
+                                - "any":  Die Bedingung muss in einer beliebigen Zelle/Spalte zutreffen
+                                - "specific": Die Bedingung muss in spezifischen Zelle/Spalte zutreffen, die festzulegen sind
+                            -->
+                            <Elements type="all" />
+                        </StoppCondition>
+
+                        <StoppCondition>
+                            <SearchConditions>
+                                <RefSearchCondition name="IsEndPlaceholder" />
+                            </SearchConditions>
+                            <Elements type="specific">
+                                <!--
+                                    The search condiion must match at column with defined index
+                                -->
+                                <!-- @@LOCALE=de
+                                    Die Suchbedingung muss auf den Inhalt der Zelle für die Spalte mit dem angegebenen Index zutreffen
+                                -->
+                                <Element index="0" />
+                                <!--
+                                    Or at element for column with defined header name
+                                -->
+                                <!-- @@LOCALE=de
+                                    Oder auf den Inhalt der Zelle für die Spalte mit dem angegebenen Namen der als Header name genutzt werden muss
+                                -->
+                                <Element header="Summe" />
+                                <!--
+                                    Or at element for column with defined type.
+
+                                    Valid values for `type` are
+
+                                    - "all": All cells/columns must match
+                                    - "first": The content of the first cell/column of the row must match
+                                    - "last": The content of the last cell/column of the row must match
+                                    - "any":  The content of any cell/column of the row must match
+                                -->
+                                <!-- @@LOCALE=de
+                                    Oder auf den Inhalt der Zelle für die Spalte mit dem angegebenen Typ.
+
+                                    Gültige Werte für `type` sind:
+
+                                    - "all": Die Bedingung muss in allen Zellen/Spalten zutreffen
+                                    - "first": Die Bedingung muss in der ersten Zelle/Spalte zutreffen
+                                    - "last": Die Bedingung muss in der letzten Zelle/Spalte zutreffen
+                                    - "any":  Die Bedingung muss in einer beliebigen Zelle/Spalte zutreffen
+                                -->
+                                <Element type="Last" />
+                            </Elements>
+                        </StoppCondition>
+
+                    </StoppConditions>
+
+                    <!-- @@LOCALE=de
+                        Jedem Rows Element können 0-n IgnoreCondition Bedingungen zugeordnet werden die darüber bestimmen
+                        ob eine einzelne Tabellenzeile aus dem Gesamtergebnis der zu ermittelnden Daten ausgeschlossen
+                        werden soll. Zeilen deren Daten die Bedingung(en) erfüllen werden dann ignoriert.
+
+                        IgnoreConditions werden immer nach den StoppConditions, aber vor den GroupConditions aufgerufen.
+                    -->
+                    <IgnoreConditions>
+                        <IgnoreCondition>
+                            <!-- @@LOCALE=de
+                                Eine IgnoreCondition kann 1-n SearchConditions definieren die festlegen welcher Inhalt 
+                                (nicht) erwartet wird damit die Zeile ignoriert wird.
+
+                                Die SearchConditions müssen immer als Refrenzen definert werden => RefSearchCondition
+                            -->
+                            <SearchConditions>
+                                <RefSearchCondition name="IsTeilsumme" />
+                                <RefSearchCondition name="IsNebenkosten" />
+                            </SearchCondition>
+                            <!-- @@LOCALE=de
+                                Hier wird festgelegt welche(s) Element(e) (Spalte) der Tabellenzeile mit den SearchConditions
+                                überprüft werden soll.
+                            -->
+                            <Elements type="specific"> 
+                                <!--
+                                    The search condiion must match at column with defined index
+                                -->
+                                <!-- @@LOCALE=de
+                                    Die Suchbedingung muss auf den Inhalt der Zelle für die Spalte mit dem angegebenen Index zutreffen
+                                -->
+                                <Element index="0" />
+                                <!--
+                                    Or at element for column with defined header name
+                                -->
+                                <!-- @@LOCALE=de
+                                    Oder auf den Inhalt der Zelle für die Spalte mit dem angegebenen Namen der als Header name genutzt werden muss
+                                -->
+                                <Element header="Summe" />
+                                <!--
+                                    Or at element for column with defined type.
+
+                                    Valid values for `type` are
+
+                                    - "all": All cells/columns must match
+                                    - "first": The content of the first cell/column of the row must match
+                                    - "last": The content of the last cell/column of the row must match
+                                    - "any":  The content of any cell/column of the row must match
+                                -->
+                                <!-- @@LOCALE=de
+                                    Oder auf den Inhalt der Zelle für die Spalte mit dem angegebenen Typ.
+
+                                    Gültige Werte für `type` sind:
+
+                                    - "all": Die Bedingung muss in allen Zellen/Spalten zutreffen
+                                    - "first": Die Bedingung muss in der ersten Zelle/Spalte zutreffen
+                                    - "last": Die Bedingung muss in der letzten Zelle/Spalte zutreffen
+                                    - "any":  Die Bedingung muss in einer beliebigen Zelle/Spalte zutreffen
+                                -->
+                                <Element type="Last" />
+                            </Elements>
+                        </IgnoreCondition>
+                    </IgnoreConditions>
+
+                    <!-- @@LOCALE=de
+                        Jedem Rows Element können 0-n GroupCondition Bedingungen zugeordnet werden.
+                        
+                        Diese bestimmen darüber ob eine bestimmter Wert aus einer einzelnen Tabellenzelle dieser Zeile
+                        als Gruppenname für eine beginnende neu Gruppe genutzt werden soll.
+
+                        GroupConditions werden nur beachtet wenn Grouping (in der Config weiter oben) aktivitiert wurde.
+
+                        GroupConditions werden immer nach den IgnoreConditions und somit auch nach den StoppConditions aufgerufen.
+                    -->
+                    <GroupConditions>
+                        <GroupCondition>
+                            <SearchConditions>
+                                <RefSearchCondition name="AnyConditionName" />
+                            </SearchConditions>
+                            <!--
+                                The elements that should be checked by the seaarch conditions
+                            -->
+                            <Elements type="specific">
+                                <Element index="5" />
+                            </Elements>
+                            <!--
+                                The index of the element (column) that contains the new group name
+                                If no Selection is defined the content is selected as new group name
+                                from the matching cell selected by the condition
+                            -->
+                            <Selection index="6" />
+                        </GroupCondition>
+                    </GroupConditions>
+
+                </Rows>
+
+                <!--
+                    Here is defined how many columns should be selected and the names of the columns.
+                -->
+                <!-- @@LOCALE=de
+                    Hier wird festgelegt wie viele Spalten 1-n ausgewählt werden sollen und wie die Namen der Spalten sind.
+                    In zukünftigen Versionen ist angedacht auch dynamische Spaltenmengen zuzulassen.
+
+                    - `amount`: Definiert die fixe Menge auszuwählender Spalten.
+                -->
+                <Columns amount="7">
+                    <Names>
+                        <Name>Spalte 1</Name>
+                        <Name>Spalte 2</Name>
+                        <Name>Spalte 3</Name>
+                        <Name>Spalte 4</Name>
+                        <Name>Spalte 5</Name>
+                        <Name>Spalte 6</Name>
+                        <Name>Spalte 7</Name>
+                    </Names>
+                </Columns>
+
+                <ContentHandlers>
+                    <ContentHandler notEmpty="true" index="1"></ContentHandler>
+                </ContentHandlers>
+
+            </Selection>
+
+        <Selections>
+
+    </Mapping>
+
+</SpreadSheetMapping>
